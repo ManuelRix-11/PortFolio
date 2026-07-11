@@ -1,0 +1,45 @@
+.contact-socials-centered {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: var(--primary);
+}
+
+.social-icon {
+  color: var(--muted);
+  display: flex;
+  transition: color 0.2s;
+}
+
+.social-link:hover .social-icon {
+  color: var(--primary);
+}
+
+.social-label {
+  font-family: var(--font-head);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 500px) {
+  .contact-socials-centered {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}

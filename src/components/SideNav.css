@@ -1,0 +1,59 @@
+.side-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) translateX(48px);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.side-nav.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  pointer-events: all;
+}
+
+.side-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 0;
+}
+
+/* ── Bar only — label removed ── */
+.side-nav-bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.25);
+  width: 16px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.side-nav-item:hover .side-nav-bar {
+  width: 22px;
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.side-nav-item.active .side-nav-bar {
+  width: 28px;
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--glow);
+}
+
+/* ── No labels — tooltip via title attr (native) ── */
+.side-nav-label { display: none; }
+
+@media (max-width: 900px) {
+  .side-nav { display: none; }
+}

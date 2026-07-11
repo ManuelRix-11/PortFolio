@@ -1,0 +1,138 @@
+/* ── Universe canvas: 900×720 free-form space ── */
+.universe {
+  position: relative;
+  width: 900px;
+  height: 720px;
+  margin: 48px auto 0;
+  /* Scale down on smaller screens */
+  scale: min(1, calc(100vw / 940px));
+  transform-origin: top center;
+}
+
+/* Compensate height when scaled */
+@media (max-width: 940px) {
+  .universe {
+    margin-bottom: calc((720px * (1 - min(1, calc(100vw / 940px)))) * -1);
+  }
+}
+
+/* ── Each system: absolutely positioned by --cx/--cy (center point) ── */
+.sys-wrap {
+  position: absolute;
+  left: var(--cx);
+  top:  var(--cy);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* bring hovered system on top */
+  transition: z-index 0s;
+}
+
+.sys-wrap:hover { z-index: 10; }
+
+/* ── Ring ── */
+.sys-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-cw  { animation: spin-cw  linear infinite; }
+.ring-ccw { animation: spin-ccw linear infinite; }
+
+@keyframes spin-cw  { to { transform: rotate(360deg);  } }
+@keyframes spin-ccw { to { transform: rotate(-360deg); } }
+
+/* ── Item wrapper: positions icon on circumference ── */
+.sys-item {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px;
+}
+
+/* ── Icon background circle: counter-rotates, has background ── */
+.sys-icon-bg {
+  width: 36px;
+  height: 36px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  padding: 6px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.icon-cw  { animation: spin-ccw linear infinite; }
+.icon-ccw { animation: spin-cw  linear infinite; }
+
+.sys-icon-bg:hover {
+  border-color: var(--primary);
+}
+
+/* ── Icon image: no background, filter applied only here ── */
+.sys-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Center hub ── */
+.sys-center {
+  position: absolute;
+  z-index: 5;
+  /* Bigger hub so text is readable */
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in srgb, var(--c) 65%, white 35%),
+    var(--c) 60%,
+    color-mix(in srgb, var(--c) 85%, black 15%)
+  );
+  box-shadow:
+    0 0 28px color-mix(in srgb, var(--c) 45%, transparent),
+    0 0 70px color-mix(in srgb, var(--c) 18%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  animation: pulse-hub 3.5s ease-in-out infinite;
+}
+
+.sys-symbol {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.sys-name {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.25;
+  padding: 0 8px;
+  /* Hard shadow for legibility on any bg */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse-hub {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.06); }
+}

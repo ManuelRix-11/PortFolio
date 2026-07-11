@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "about": "Chi sono",
+    "experience": "Esperienza",
+    "education": "Formazione",
+    "skills": "Competenze",
+    "projects": "Progetti",
+    "publications": "Pubblicazioni",
+    "certifications": "Certificazioni",
+    "contact": "Contatti",
+    "download_cv": "Scarica CV"
+  },
+  "hero": {
+    "greeting": "Ciao, sono",
+    "name": "Emanuele Ragozzini",
+    "roles": [
+      "Data Scientist",
+      "Machine Learning Engineer",
+      "Junior R&D Engineer @ Eristack",
+      "NLP & Computer Vision Enthusiast"
+    ],
+    "description": "Laureato in Informatica presso l'Università di Salerno, attualmente proseguo con la magistrale in Data Science & Machine Learning. Junior R&D Engineer in Eristack, dove trasformo la ricerca in prodotti concreti.",
+    "cta_contact": "Contattami",
+    "cta_cv": "Scarica CV",
+    "scroll": "Scorri in basso"
+  },
+  "about": {
+    "title": "Chi sono",
+    "subtitle": "Un po' di me",
+    "bio": "Sono Emanuele, un appassionato di Intelligenza Artificiale e Data Science con una solida base in informatica. Amo trasformare dati in insight e costruire sistemi intelligenti che risolvono problemi reali.",
+    "bio2": "Attualmente frequento la magistrale in Data Science & Machine Learning all'Università degli Studi di Salerno, mentre lavoro come Junior R&D Engineer in Eristack, una società con sede a Penta focalizzata sull'innovazione tecnologica.",
+    "highlight_degree": "Laurea Triennale",
+    "highlight_degree_sub": "Informatica — UniSA",
+    "highlight_master": "Magistrale in corso",
+    "highlight_master_sub": "Data Science & ML — UniSA",
+    "highlight_job": "Junior R&D Engineer",
+    "highlight_job_sub": "Eristack · Penta"
+  },
+  "experience": {
+    "title": "Esperienza",
+    "subtitle": "Dove ho lavorato",
+    "items": [
+      {
+        "role": "Junior R&D Engineer",
+        "company": "Eristack",
+        "location": "Penta, SA",
+        "period": "Dicembre 2025 — Presente",
+        "description": "Ricerca e sviluppo di soluzioni basate su AI/ML. Progettazione di pipeline di dati, sviluppo di modelli NLP e Computer Vision per applicazioni industriali.",
+        "tags": [
+          "LLM",
+          "Machine Learning",
+          "NLP",
+          "R&D"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Formazione",
+    "subtitle": "Il mio percorso accademico",
+    "items": [
+      {
+        "degree": "Laurea Magistrale — Data Science & Machine Learning",
+        "school": "Università degli Studi di Salerno",
+        "period": "2023 — In corso",
+        "description": "Approfondimento di tecniche avanzate di machine learning, deep learning, NLP, computer vision e big data analytics.",
+        "status": "In corso"
+      },
+      {
+        "degree": "Laurea Triennale — Informatica",
+        "school": "Università degli Studi di Salerno",
+        "period": "2020 — 2023",
+        "description": "Fondamenti di programmazione, algoritmi, basi di dati, reti e introduzione al machine learning.",
+        "status": "Conseguita"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Competenze",
+    "subtitle": "Tecnologie e strumenti che utilizzo",
+    "categories": {
+      "languages": "Linguaggi",
+      "ml": "ML / AI Frameworks",
+      "tools": "Tools & DevOps",
+      "web": "Web & API"
+    }
+  },
+  "projects": {
+    "title": "Progetti",
+    "subtitle": "Cosa ho costruito",
+    "view_details": "Dettagli",
+    "github": "GitHub",
+    "demo": "Demo",
+    "close": "Chiudi"
+  },
+  "publications": {
+    "title": "Pubblicazioni",
+    "subtitle": "Ricerca e contributi accademici",
+    "status_published": "Pubblicato",
+    "status_review": "In revisione",
+    "status_preprint": "Preprint",
+    "status_presented": "Presentato · Non pubblicato"
+  },
+  "certifications": {
+    "title": "Certificazioni",
+    "subtitle": "Formazione continua e riconoscimenti",
+    "verify": "Verifica"
+  },
+  "contact": {
+    "title": "Contatti",
+    "subtitle": "Parliamo",
+    "description": "Hai un progetto interessante, una collaborazione o vuoi semplicemente fare due chiacchiere sull'AI? Scrivimi!",
+    "name_label": "Nome",
+    "name_placeholder": "Il tuo nome",
+    "email_label": "Email",
+    "email_placeholder": "tua@email.com",
+    "message_label": "Messaggio",
+    "message_placeholder": "Ciao Emanuele, vorrei...",
+    "send": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "success": "Messaggio inviato! Ti risponderò presto.",
+    "note": "In alternativa, puoi contattarmi direttamente su LinkedIn o via email."
+  },
+  "footer": {
+    "made_with": "Fatto con",
+    "and": "e",
+    "coffee": "caffè",
+    "rights": "Tutti i diritti riservati."
+  }
+}

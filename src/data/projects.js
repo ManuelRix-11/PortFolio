@@ -1,0 +1,13 @@
+// placeholder projects — update descriptions, github links, and images as needed
+export const projects = [
+  {
+    id: 1,
+    title: 'SNN for Enhanced Cancer Type Detection',
+    shortDesc: 'A Spiking Neural Network approach for enhanced cancer type detection.',
+    fullDesc: 'A research-oriented project focused on using Spiking Neural Networks (SNNs) to improve the detection and classification of various cancer types.',
+    tags: ['Python', 'TensorFlow', 'Keras', 'SNN', 'Healthcare'],
+    github: '#',
+    demo: null,
+    color: '#4F6EF7',
+  }
+];

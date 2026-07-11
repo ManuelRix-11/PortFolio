@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects",
+    "publications": "Publications",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "download_cv": "Download CV"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Emanuele Ragozzini",
+    "roles": [
+      "Data Scientist",
+      "Machine Learning Engineer",
+      "Junior R&D Engineer @ Eristack",
+      "NLP & Computer Vision Enthusiast"
+    ],
+    "description": "CS graduate from University of Salerno, currently pursuing an MSc in Data Science & Machine Learning. JuniorR&D Engineer at Eristack, bridging research and real-world applications.",
+    "cta_contact": "Get in touch",
+    "cta_cv": "Download CV",
+    "scroll": "Scroll down"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "A bit about myself",
+    "bio": "I'm Emanuele, an AI and Data Science enthusiast with a strong Computer Science background. I love turning data into insights and building intelligent systems that solve real problems.",
+    "bio2": "Currently pursuing an MSc in Data Science & Machine Learning at the University of Salerno, while working as a Junior R&D Engineer at Eristack — a technology company based in Penta focused on cutting-edge innovation.",
+    "highlight_degree": "Bachelor's Degree",
+    "highlight_degree_sub": "Computer Science — UniSA",
+    "highlight_master": "Master's (ongoing)",
+    "highlight_master_sub": "Data Science & ML — UniSA",
+    "highlight_job": "Junior R&D Engineer",
+    "highlight_job_sub": "Eristack · Penta"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Where I've worked",
+    "items": [
+      {
+        "role": "Junior R&D Engineer",
+        "company": "Eristack",
+        "location": "Penta, SA",
+        "period": "Dec 2025 — Present",
+        "description": "Research and development of AI/ML-based solutions. Designing data pipelines, building NLP and Computer Vision models for industrial applications.",
+        "tags": [
+          "LLM",
+          "Machine Learning",
+          "NLP",
+          "R&D"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "My academic journey",
+    "items": [
+      {
+        "degree": "MSc — Data Science & Machine Learning",
+        "school": "University of Salerno",
+        "period": "2023 — Ongoing",
+        "description": "Advanced machine learning, deep learning, NLP, computer vision, and big data analytics.",
+        "status": "Ongoing"
+      },
+      {
+        "degree": "BSc — Computer Science",
+        "school": "University of Salerno",
+        "period": "2020 — 2023",
+        "description": "Programming fundamentals, algorithms, databases, networking, and introduction to machine learning.",
+        "status": "Graduated"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and tools I work with",
+    "categories": {
+      "languages": "Languages",
+      "ml": "ML / AI Frameworks",
+      "tools": "Tools & DevOps",
+      "web": "Web & API"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "What I've built",
+    "view_details": "Details",
+    "github": "GitHub",
+    "demo": "Demo",
+    "close": "Close"
+  },
+  "publications": {
+    "title": "Publications",
+    "subtitle": "Research & academic contributions",
+    "status_published": "Published",
+    "status_review": "Under Review",
+    "status_preprint": "Preprint"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Continuous learning & achievements",
+    "verify": "Verify"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's talk",
+    "description": "Got an interesting project, a collaboration idea, or just want to chat about AI? Drop me a message!",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "you@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Hi Emanuele, I'd like to...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent! I'll get back to you soon.",
+    "note": "Alternatively, reach me directly on LinkedIn or via email."
+  },
+  "footer": {
+    "made_with": "Made with",
+    "and": "and",
+    "coffee": "coffee",
+    "rights": "All rights reserved."
+  }
+}
