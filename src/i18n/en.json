@@ -103,8 +103,12 @@
   "certifications": {
     "title": "Certifications",
     "subtitle": "Continuous learning & achievements",
-    "verify": "Verify"
+    "verify": "Verify",
+    "status_earned": "Earned",
+    "status_in-progress": "In Progress",
+    "status_planned": "Planned"
   },
+
   "contact": {
     "title": "Contact",
     "subtitle": "Let's talk",

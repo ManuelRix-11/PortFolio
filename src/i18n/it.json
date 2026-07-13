@@ -104,8 +104,12 @@
   "certifications": {
     "title": "Certificazioni",
     "subtitle": "Formazione continua e riconoscimenti",
-    "verify": "Verifica"
+    "verify": "Verifica",
+    "status_earned": "Ottenuta",
+    "status_in-progress": "In conseguimento",
+    "status_planned": "Pianificata"
   },
+
   "contact": {
     "title": "Contatti",
     "subtitle": "Parliamo",

@@ -82,3 +82,16 @@
 .project-card:hover .project-cta {
   gap: 6px;
 }
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .project-body {
+    padding: 18px;
+  }
+}
+

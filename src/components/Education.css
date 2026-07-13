@@ -97,3 +97,19 @@
   border-radius: 2px;
   transition: width 1s ease;
 }
+
+@media (max-width: 480px) {
+  .education-grid {
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .edu-card {
+    padding: 24px 18px;
+  }
+
+  .edu-degree {
+    font-size: 15px;
+  }
+}
+

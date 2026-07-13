@@ -32,7 +32,6 @@ const SYSTEMS = [
     pos: { cx: 620, cy: 200 },
     rings: [
       {
-        // Inner: data manipulation & classic ML tools (+ Jupyter)
         dir: 'cw', dur: 20, r: 90,
         items: [
           { name: 'Pandas',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg' },
@@ -43,7 +42,6 @@ const SYSTEMS = [
         ],
       },
       {
-        // Outer: deep learning & LLM frameworks
         dir: 'ccw', dur: 34, r: 155,
         items: [
           { name: 'TensorFlow',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
@@ -105,65 +103,91 @@ export default function Skills() {
           <p className="section-label">{t('skills.subtitle')}</p>
           <h2 className="section-title">{t('skills.title')}</h2>
         </div>
+
+        {/* ── Mobile grid layout (< 900px) ── */}
+        <div className={`skills-mobile fade-in fade-in-delay-1${visible ? ' visible' : ''}`}>
+          {SYSTEMS.map((sys) => {
+            const allItems = sys.rings.flatMap(r => r.items);
+            return (
+              <div key={sys.id} className="skill-category">
+                <div className="skill-category-header" style={{ '--c': sys.color }}>
+                  <span className="skill-category-icon">{sys.symbol}</span>
+                  <span className="skill-category-name">{sys.label[lang]}</span>
+                </div>
+                <div className="skill-chips">
+                  {allItems.map(item => (
+                    <div key={item.name} className="skill-chip">
+                      <img
+                        src={item.icon}
+                        alt={item.name}
+                        className="skill-chip-icon"
+                        style={item.dark ? { filter: 'brightness(0) invert(1)' } : undefined}
+                        onError={e => { e.target.style.opacity = '0'; }}
+                      />
+                      <span className="skill-chip-name">{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      <div className={`universe fade-in fade-in-delay-1${visible ? ' visible' : ''}`}>
-        {SYSTEMS.map((sys) => (
-          <div
-            key={sys.id}
-            className="sys-wrap"
-            style={{ '--cx': `${sys.pos.cx}px`, '--cy': `${sys.pos.cy}px` }}
-          >
-            {sys.rings.map((ring, ri) => (
-              <div
-                key={ri}
-                className={`sys-ring ring-${ring.dir}`}
-                style={{
-                  width: ring.r * 2,
-                  height: ring.r * 2,
-                  borderColor: `${sys.color}25`,
-                  animationDuration: `${ring.dur}s`,
-                }}
-              >
-                {ring.items.map((item, i) => {
-                  const angle = (360 / ring.items.length) * i;
-                  return (
-                    <div
-                      key={item.name}
-                      className="sys-item"
-                      style={{ transform: `rotate(${angle}deg) translateX(${ring.r}px) rotate(-${angle}deg)` }}
-                      title={item.name}
-                    >
-                      {/*
-                        ponytail: split into two elements so CSS filter on <img>
-                        doesn't bleed onto the background circle.
-                        .sys-icon-bg  → handles background, border, border-radius, counter-rotation
-                        img           → handles image + optional invert filter (dark icons only)
-                      */}
+      {/* ── Desktop solar system (≥ 900px) ── */}
+      <div className="universe-wrap">
+        <div className={`universe fade-in fade-in-delay-1${visible ? ' visible' : ''}`}>
+          {SYSTEMS.map((sys) => (
+            <div
+              key={sys.id}
+              className="sys-wrap"
+              style={{ '--cx': `${sys.pos.cx}px`, '--cy': `${sys.pos.cy}px` }}
+            >
+              {sys.rings.map((ring, ri) => (
+                <div
+                  key={ri}
+                  className={`sys-ring ring-${ring.dir}`}
+                  style={{
+                    width: ring.r * 2,
+                    height: ring.r * 2,
+                    borderColor: `${sys.color}25`,
+                    animationDuration: `${ring.dur}s`,
+                  }}
+                >
+                  {ring.items.map((item, i) => {
+                    const angle = (360 / ring.items.length) * i;
+                    return (
                       <div
-                        className={`sys-icon-bg icon-${ring.dir}`}
-                        style={{ animationDuration: `${ring.dur}s` }}
+                        key={item.name}
+                        className="sys-item"
+                        style={{ transform: `rotate(${angle}deg) translateX(${ring.r}px) rotate(-${angle}deg)` }}
+                        title={item.name}
                       >
-                        <img
-                          src={item.icon}
-                          alt={item.name}
-                          className="sys-icon"
-                          style={item.dark ? { filter: 'brightness(0) invert(1)' } : undefined}
-                          onError={e => { e.target.style.opacity = '0'; }}
-                        />
+                        <div
+                          className={`sys-icon-bg icon-${ring.dir}`}
+                          style={{ animationDuration: `${ring.dur}s` }}
+                        >
+                          <img
+                            src={item.icon}
+                            alt={item.name}
+                            className="sys-icon"
+                            style={item.dark ? { filter: 'brightness(0) invert(1)' } : undefined}
+                            onError={e => { e.target.style.opacity = '0'; }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                    );
+                  })}
+                </div>
+              ))}
 
-            <div className="sys-center" style={{ '--c': sys.color }}>
-              <span className="sys-symbol">{sys.symbol}</span>
-              <span className="sys-name">{sys.label[lang]}</span>
+              <div className="sys-center" style={{ '--c': sys.color }}>
+                <span className="sys-symbol">{sys.symbol}</span>
+                <span className="sys-name">{sys.label[lang]}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

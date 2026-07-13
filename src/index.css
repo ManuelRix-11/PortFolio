@@ -30,7 +30,8 @@
   --shadow-glow: 0 0 40px var(--glow);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
 
 body {
   font-family: var(--font-body);
@@ -164,4 +165,12 @@ button { cursor: pointer; border: none; font-family: inherit; }
 @media (max-width: 768px) {
   .section { padding: 72px 0; }
   .section-subtitle { margin-bottom: 36px; }
+  .container { padding: 0 16px; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 56px 0; }
+  .section-subtitle { font-size: 14px; margin-bottom: 28px; }
+  .container { padding: 0 14px; }
+  .btn { padding: 10px 20px; font-size: 14px; }
 }

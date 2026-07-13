@@ -21,7 +21,14 @@ export default function Certifications() {
             <div className="cert-card" key={cert.id}>
               <span className="cert-badge">{cert.badge}</span>
               <div className="cert-info">
-                <h3 className="cert-title">{cert.title}</h3>
+                <div className="cert-title-row">
+                  <h3 className="cert-title">{cert.title}</h3>
+                  {cert.status && (
+                    <span className={`cert-status cert-status--${cert.status}`}>
+                      {t(`certifications.status_${cert.status}`)}
+                    </span>
+                  )}
+                </div>
                 <p className="cert-provider">{cert.provider}</p>
                 <p className="cert-date">{cert.date}</p>
               </div>

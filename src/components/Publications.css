@@ -106,3 +106,14 @@
   .pub-card { flex-direction: column; }
   .pub-header { flex-direction: column; }
 }
+
+@media (max-width: 480px) {
+  .pub-card {
+    padding: 20px 16px;
+  }
+
+  .pub-title {
+    font-size: 14px;
+  }
+}
+
