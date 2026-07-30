@@ -1,16 +1,34 @@
-# React + Vite
+# Emanuele Ragozzini - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A sleek, responsive, and minimalist personal portfolio website built with React and Vite. 
+It features a dynamic layout to showcase projects, skills, and academic publications, with a strong focus on Machine Learning and Data Science.
 
-Currently, two official plugins are available:
+## Tech Stack
+- **Framework:** React + Vite
+- **Styling:** Custom Vanilla CSS (CSS Variables for easy theming)
+- **Icons:** Lucide React
+- **i18n:** react-i18next (English & Italian support)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- **Responsive Design:** Optimized for mobile, tablet, and desktop.
+- **Multilingual Support:** Instantly toggle between English and Italian.
+- **Custom Animations:** Smooth scroll reveals and micro-interactions.
+- **Data-Driven:** Content like Projects and Publications is decoupled in `src/data` for easy updates.
 
-## React Compiler
+## Local Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To run this project locally:
 
-## Expanding the Oxlint configuration
+```bash
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+# Start the development server
+npm run dev
+```
+
+## Build for Production
+
+```bash
+npm run build
+```
