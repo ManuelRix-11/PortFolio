@@ -6,8 +6,7 @@ import './Contact.css';
 const SOCIALS = [
   { id: 'github', icon: <GitFork size={22} />, label: 'GitHub', href: 'https://github.com/ManuelRix-11' },
   { id: 'linkedin', icon: <Link2 size={22} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/emanuele-ragozzini/' },
-  { id: 'email', icon: <Mail size={22} />, label: 'Email', href: 'mailto:' },
-  { id: 'scholar', icon: <BookOpen size={22} />, label: 'ResearchGate', href: 'https://researchgate.net/' },
+  { id: 'scholar', icon: <BookOpen size={22} />, label: 'ResearchGate', href: 'https://www.researchgate.net/profile/Emanuele-Ragozzini?ev=hdr_xprf/' },
 ];
 
 export default function Contact() {
