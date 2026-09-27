@@ -1,92 +1,177 @@
-.section-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+/* ============================================================
+   ABOUT SECTION — EDITORIAL NARRATIVE & CURRENT FOCUS
+   Pure narrative hierarchy without duplicate qualification cards
+   ============================================================ */
+
+.about-section {
+  position: relative;
+  background: var(--bg);
+}
+
+.about-unified-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-header-meta {
+  margin-bottom: 32px;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 8px;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-  margin-top: 48px;
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(79, 110, 247, 0.12);
+  border: 1px solid rgba(79, 110, 247, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
 }
 
-.about-text {
+.section-index-line {
+  width: 16px;
+  height: 1px;
+  background: rgba(79, 110, 247, 0.35);
+}
+
+.about-header-meta .section-label {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--primary);
+  margin-bottom: 0;
+}
+
+.about-title {
+  margin-bottom: 0;
+}
+
+/* ── Editorial Narrative Layout ── */
+.about-editorial-layout {
+  max-width: 960px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
-.about-text p {
-  color: var(--muted);
+/* 1. Primary Quote-Style Lead */
+.about-quote-lead {
+  position: relative;
+  padding: 26px 32px;
+  background: linear-gradient(135deg, rgba(21, 28, 52, 0.8) 0%, rgba(17, 22, 40, 0.5) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 16px 16px 0;
+  box-shadow: -4px 0 24px rgba(79, 110, 247, 0.2), 0 10px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.about-lead-statement {
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.7;
+  color: #F8FAFC;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* 2. Secondary Paragraph (Indented for visual cadence) */
+.about-secondary-block {
+  margin-top: 24px;
+  padding-left: 36px;
+}
+
+.about-body-statement {
   font-size: 16px;
   line-height: 1.8;
+  color: var(--muted);
+  max-width: 860px;
+  margin: 0;
 }
 
-.about-highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.highlight-card {
+/* 3. Current Focus Distinctive Callout Bar */
+.about-current-focus-bar {
+  margin-top: 36px;
+  padding: 16px 24px;
+  background: #131829;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-left: 3px solid rgba(52, 211, 153, 0.6);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px 24px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: var(--transition);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
 }
 
-.highlight-card:hover {
-  border-color: var(--primary);
-  background: var(--card-hover);
-  transform: translateX(4px);
-}
-
-.highlight-icon {
-  color: var(--primary);
-  background: rgba(79, 110, 247, 0.1);
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
+.focus-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--success);
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
-.highlight-card strong {
-  display: block;
-  font-size: 15px;
-  color: var(--text);
-  margin-bottom: 2px;
+.focus-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+  animation: focusPulse 2s infinite ease-in-out;
 }
 
-.highlight-card p {
-  font-size: 13px;
-  color: var(--muted);
+@keyframes focusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
+.focus-statement {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin: 0;
+}
+
+/* ── Responsive Adaptations ── */
 @media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .about-quote-lead {
+    padding: 20px 20px;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .about-lead-statement {
+    font-size: 1.15rem;
+  }
+
+  .about-secondary-block {
+    padding-left: 20px;
+  }
+
+  .about-current-focus-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
   }
 }
-
-@media (max-width: 480px) {
-  .about-grid {
-    gap: 24px;
-    margin-top: 32px;
-  }
-
-  .highlight-card {
-    padding: 16px 18px;
-    gap: 12px;
-  }
-}
-

@@ -1,185 +1,317 @@
-/* ── Universe canvas: 900×720 free-form space ── */
+/* ============================================================
+   SKILLS SECTION — LIVING NEURAL ORBITAL SYSTEM
+   ============================================================ */
 
-/* Wrapper clips overflow on small screens */
-.universe-wrap {
-  overflow-x: hidden;
-  width: 100%;
+.skills-section {
+  position: relative;
+  overflow: hidden;
 }
 
+/* ── Dual Typography Section Label ── */
+.skills-section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+/* ── Interactive Neural Network HTML5 Canvas ── */
+.skills-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Cursor Follower Radial Glow ── */
+.skills-cursor-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 640px;
+  margin-left: -320px;
+  margin-top: -320px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(79, 110, 247, 0.12) 0%,
+    rgba(129, 140, 248, 0.05) 42%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+.skills-cursor-glow.active {
+  opacity: 1;
+}
+
+/* ── Desktop Universe Wrap (≥ 900px) ── */
+.universe-wrap {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  z-index: 2;
+  margin-top: 32px;
+}
+
+/* ── Desktop Telemetry HUD ── */
+.universe-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto 16px;
+  padding: 10px 22px;
+  background: rgba(17, 24, 39, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.hud-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 10px var(--success);
+  animation: pulse-status-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-status-dot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+.hud-counters {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.hud-counter-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hud-name {
+  color: var(--muted);
+}
+
+.hud-num {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── Solar System Canvas: 900×720 free-form space ── */
 .universe {
   position: relative;
   width: 900px;
   height: 720px;
-  margin: 48px auto 0;
-  /* Scale down on smaller screens */
+  margin: 0 auto;
   scale: min(1, calc(100vw / 940px));
   transform-origin: top center;
 }
 
-/* Compensate height when scaled */
 @media (max-width: 940px) {
   .universe {
     margin-bottom: calc((720px * (1 - min(1, calc(100vw / 940px)))) * -1);
   }
 }
 
-/* On mobile hide the universe entirely — mobile grid is used instead */
+/* Hide desktop solar system on mobile screens */
 @media (max-width: 899px) {
-  .universe-wrap { display: none; }
-}
-
-/* ── Mobile skills grid (visible only < 900px) ── */
-.skills-mobile {
-  display: none;
-}
-
-@media (max-width: 899px) {
-  .skills-mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-top: 40px;
+  .universe-wrap {
+    display: none;
   }
 }
 
-.skill-category {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  transition: var(--transition);
+/* ── SVG Constellation Link Paths ── */
+.universe-constellations {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.skill-category:hover {
-  border-color: var(--primary);
-  box-shadow: 0 4px 24px var(--glow-lg);
+.constellation-line {
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  transition: stroke-width 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
 }
 
-.skill-category-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  color: var(--c, var(--primary));
+.constellation-line.is-active {
+  stroke-width: 2px !important;
+  filter: drop-shadow(0 0 7px rgba(129, 140, 248, 0.75));
 }
 
-.skill-category-icon {
-  display: flex;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  padding: 6px;
-}
-
-.skill-category-name {
-  font-family: var(--font-head);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.skill-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(79, 110, 247, 0.06);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 6px 14px 6px 8px;
-  transition: var(--transition);
-}
-
-.skill-chip:hover {
-  border-color: var(--primary);
-  background: rgba(79, 110, 247, 0.12);
-}
-
-.skill-chip-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-}
-
-.skill-chip-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-
-/* ── Each system: absolutely positioned by --cx/--cy (center point) ── */
+/* ── System Wrap ── */
 .sys-wrap {
   position: absolute;
   left: var(--cx);
-  top:  var(--cy);
+  top: var(--cy);
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* bring hovered system on top */
+  z-index: 5;
   transition: z-index 0s;
 }
 
-.sys-wrap:hover { z-index: 10; }
+.sys-wrap:hover {
+  z-index: 25;
+}
 
-/* ── Ring ── */
+/* ── Planetary Orbit Rings ── */
 .sys-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid;
+  border: 1px dashed;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--c, var(--primary)) 8%, transparent);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.ring-cw  { animation: spin-cw  linear infinite; }
+.ring-cw  { animation: spin-cw linear infinite; }
 .ring-ccw { animation: spin-ccw linear infinite; }
 
 @keyframes spin-cw  { to { transform: rotate(360deg);  } }
 @keyframes spin-ccw { to { transform: rotate(-360deg); } }
 
-/* ── Item wrapper: positions icon on circumference ── */
-.sys-item {
-  position: absolute;
-  top:  50%;
-  left: 50%;
-  width: 36px;
-  height: 36px;
-  margin: -18px;
+/* ── Orbit Pause on Hover ── */
+.sys-ring.is-paused,
+.sys-ring.is-paused .sys-icon-bg,
+.sys-ring:has(.sys-item:hover),
+.sys-ring:has(.sys-item:hover) .sys-icon-bg,
+.sys-icon-bg.is-paused {
+  animation-play-state: paused !important;
 }
 
-/* ── Icon background circle: counter-rotates, has background ── */
+/* ── Item Wrapper: positions icon on circumference ── */
+.sys-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* ── Orbiting Icon Background & Living Glow ── */
 .sys-icon-bg {
-  width: 36px;
-  height: 36px;
-  background: var(--card);
-  border: 1px solid var(--border);
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: rgba(17, 24, 39, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
-  padding: 6px;
+  padding: 7px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  cursor: default;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .icon-cw  { animation: spin-ccw linear infinite; }
 .icon-ccw { animation: spin-cw  linear infinite; }
 
-.sys-icon-bg:hover {
-  border-color: var(--primary);
+/* Active glowing ring pseudo-element */
+.sys-icon-bg::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid var(--c, var(--primary));
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  box-shadow: 0 0 16px var(--c, var(--primary)), inset 0 0 8px var(--c, var(--primary));
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ── Icon image: no background, filter applied only here ── */
+/* Smooth scale up and active glowing ring on hover */
+.sys-item:hover .sys-icon-bg,
+.sys-icon-bg.is-active {
+  transform: scale(1.34);
+  border-color: var(--c, var(--primary));
+  background: #151d32;
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--c, var(--primary)) 65%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+  z-index: 50;
+}
+
+.sys-item:hover .sys-icon-bg::after,
+.sys-icon-bg.is-active::after {
+  opacity: 1;
+  transform: scale(1.08);
+  animation: orbit-ring-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes orbit-ring-glow-pulse {
+  0%, 100% {
+    transform: scale(1.08);
+    opacity: 0.85;
+    box-shadow: 0 0 14px var(--c, var(--primary));
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 1;
+    box-shadow: 0 0 24px var(--c, var(--primary)), inset 0 0 10px var(--c, var(--primary));
+  }
+}
+
+/* ── Icon Image ── */
 .sys-icon {
   width: 100%;
   height: 100%;
@@ -187,13 +319,69 @@
   display: block;
 }
 
-/* ── Center hub ── */
+/* ── Elegant Tooltip ── */
+.sys-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(10, 14, 23, 0.95);
+  border: 1px solid color-mix(in srgb, var(--c, var(--primary)) 45%, rgba(255, 255, 255, 0.14));
+  border-radius: 6px;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    0 0 14px color-mix(in srgb, var(--c, var(--primary)) 30%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.sys-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: color-mix(in srgb, var(--c, var(--primary)) 45%, rgba(255, 255, 255, 0.14));
+}
+
+.sys-tooltip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+  flex-shrink: 0;
+}
+
+.sys-tooltip-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #F1F5F9;
+  letter-spacing: 0.04em;
+}
+
+.sys-item:hover .sys-tooltip,
+.sys-icon-bg.is-active .sys-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Central Hub ── */
 .sys-center {
   position: absolute;
-  z-index: 5;
-  /* Bigger hub so text is readable */
-  width: 90px;
-  height: 90px;
+  z-index: 6;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   background: radial-gradient(
     circle at 35% 30%,
@@ -202,19 +390,32 @@
     color-mix(in srgb, var(--c) 85%, black 15%)
   );
   box-shadow:
-    0 0 28px color-mix(in srgb, var(--c) 45%, transparent),
-    0 0 70px color-mix(in srgb, var(--c) 18%, transparent);
+    0 0 30px color-mix(in srgb, var(--c) 45%, transparent),
+    0 0 75px color-mix(in srgb, var(--c) 20%, transparent);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
+  cursor: pointer;
   animation: pulse-hub 3.5s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sys-hub-radar {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--c) 40%, transparent);
+  pointer-events: none;
+  animation: spin-cw 32s linear infinite;
 }
 
 .sys-symbol {
   font-size: 24px;
   line-height: 1;
+  color: #fff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 .sys-name {
@@ -226,12 +427,248 @@
   text-transform: uppercase;
   text-align: center;
   line-height: 1.25;
-  padding: 0 8px;
-  /* Hard shadow for legibility on any bg */
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  padding: 0 6px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.sys-hub-count {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 @keyframes pulse-hub {
-  0%, 100% { transform: scale(1);    }
-  50%       { transform: scale(1.06); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* ── Central Hub Hover: Pulses its Respective Constellation ── */
+.sys-wrap.is-hub-active,
+.sys-wrap:has(.sys-center:hover) {
+  z-index: 25;
+}
+
+.sys-wrap.is-hub-active .sys-center,
+.sys-wrap:has(.sys-center:hover) .sys-center {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 45px color-mix(in srgb, var(--c) 85%, transparent),
+    0 0 95px color-mix(in srgb, var(--c) 45%, transparent);
+  animation: hub-beat-active 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes hub-beat-active {
+  0% {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--c) 75%, transparent);
+  }
+  100% {
+    transform: scale(1.16);
+    box-shadow:
+      0 0 60px color-mix(in srgb, var(--c) 95%, transparent),
+      0 0 110px color-mix(in srgb, var(--c) 50%, transparent);
+  }
+}
+
+.sys-wrap.is-hub-active .sys-ring,
+.sys-wrap:has(.sys-center:hover) .sys-ring {
+  border-color: color-mix(in srgb, var(--c) 85%, transparent) !important;
+  box-shadow:
+    0 0 28px color-mix(in srgb, var(--c) 45%, transparent),
+    inset 0 0 16px color-mix(in srgb, var(--c) 25%, transparent) !important;
+}
+
+.sys-wrap.is-hub-active .sys-icon-bg,
+.sys-wrap:has(.sys-center:hover) .sys-icon-bg {
+  border-color: color-mix(in srgb, var(--c) 65%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--c) 45%, transparent);
+  background: color-mix(in srgb, var(--card) 75%, var(--c) 25%);
+}
+
+/* ============================================================
+   MOBILE BENTO-GRID LAYOUT (< 900px)
+   ============================================================ */
+
+.skills-bento-grid {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .skills-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 36px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .skills-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* AI has 9 skills, span 2 columns for bento balance */
+  .bento-card-ai {
+    grid-column: span 2;
+  }
+}
+
+.bento-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.82) 0%, rgba(13, 17, 23, 0.95) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--c) 65%, transparent);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 0 28px color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+/* Ambient Corner Glow */
+.bento-glow-corner {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c) 25%, transparent) 0%, transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+/* Card Header */
+.bento-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bento-header-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bento-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c) 14%, rgba(255, 255, 255, 0.04));
+  border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  color: var(--c);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--c) 18%, transparent);
+}
+
+.bento-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bento-meta-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.bento-title {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.bento-counter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Glowing Skill Badges */
+.bento-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bento-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 7px 12px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  cursor: default;
+}
+
+.bento-badge:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+.bento-badge-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.bento-badge-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── Accessibility: Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sys-ring,
+  .sys-icon-bg,
+  .sys-hub-radar,
+  .sys-center {
+    animation: none !important;
+  }
 }

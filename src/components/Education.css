@@ -1,115 +1,246 @@
-.education-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 52px;
-}
+/* ============================================================
+   EDUCATION SECTION — REFINED ACADEMIC DOSSIER
+   Clear hierarchy, no arbitrary percentages, clean typography
+   ============================================================ */
 
-.edu-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  transition: var(--transition);
+.education-section {
   position: relative;
+  background: var(--bg);
+}
+
+.education-header-group {
+  margin-bottom: 52px;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(79, 110, 247, 0.12);
+  border: 1px solid rgba(79, 110, 247, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.section-index-line {
+  width: 16px;
+  height: 1px;
+  background: rgba(79, 110, 247, 0.35);
+}
+
+.education-header-group .section-label {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--primary);
+  margin-bottom: 0;
+}
+
+.education-title {
+  margin-bottom: 0;
+}
+
+/* ── 2-Column Asymmetric Academic Cards Layout ── */
+.education-asym-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Academic Card */
+.academic-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+  background: #131829;
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  backdrop-filter: blur(12px);
   overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              background 0.25s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.edu-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+.card-featured {
+  border-color: rgba(99, 102, 241, 0.32);
+  background: linear-gradient(145deg, #161c32 0%, #131829 100%);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 110, 247, 0.12);
 }
 
-.edu-card:hover {
-  border-color: var(--primary);
+.academic-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px var(--glow-lg);
+  background: #181f35;
+  border-color: rgba(99, 102, 241, 0.48);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(99, 102, 241, 0.18);
 }
 
-.edu-status {
-  margin-bottom: 16px;
+/* Ambient Subtle Lighting Accent */
+.academic-ambient-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 110, 247, 0.12) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.status-badge {
+/* Top Academic Bar */
+.academic-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.degree-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(79, 110, 247, 0.1);
+  border: 1px solid rgba(79, 110, 247, 0.25);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.degree-badge-icon {
+  color: var(--primary);
+}
+
+/* Clean Real Status Pill */
+.academic-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.status-badge.active {
-  background: rgba(79, 110, 247, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(79, 110, 247, 0.2);
-}
-
-.status-badge.done {
+.status-active {
   background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.3);
   color: var(--success);
-  border: 1px solid rgba(52, 211, 153, 0.2);
 }
 
-.edu-degree {
-  font-size: 17px;
+.academic-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+  animation: eduPulse 2s infinite ease-in-out;
+}
+
+@keyframes eduPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.status-completed {
+  background: rgba(129, 140, 248, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  color: var(--accent);
+}
+
+.academic-check-icon {
+  color: var(--accent);
+}
+
+/* Degree Title */
+.academic-degree-title {
+  font-family: var(--font-head);
+  font-size: clamp(20px, 2.2vw, 25px);
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
 }
 
-.edu-school {
-  font-size: 14px;
+/* Institution & Period Row */
+.academic-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.university-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
   color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 4px;
+  font-weight: 600;
+  font-family: var(--font-body);
 }
 
-.edu-period {
-  font-size: 13px;
-  color: var(--subtle);
-  margin-bottom: 16px;
+.uni-tag-icon {
+  opacity: 0.85;
 }
 
-.edu-desc {
-  font-size: 14px;
+.period-badge-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   color: var(--muted);
+  font-weight: 500;
+}
+
+.period-icon {
+  color: var(--subtle);
+}
+
+/* Academic Description */
+.academic-desc {
+  font-size: 14.5px;
   line-height: 1.7;
-  margin-bottom: 24px;
+  color: var(--muted);
+  margin-top: auto;
 }
 
-.edu-bar {
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.edu-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  border-radius: 2px;
-  transition: width 1s ease;
-}
-
-@media (max-width: 480px) {
-  .education-grid {
-    gap: 16px;
-    margin-top: 36px;
+/* ── Responsive Adaptations ── */
+@media (max-width: 900px) {
+  .education-asym-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .edu-card {
-    padding: 24px 18px;
-  }
-
-  .edu-degree {
-    font-size: 15px;
+  .academic-card {
+    padding: 24px 22px;
   }
 }
-

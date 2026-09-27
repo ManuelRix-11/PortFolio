@@ -34,7 +34,9 @@
     "highlight_master": "Magistrale in corso",
     "highlight_master_sub": "Data Science & ML — UniSA",
     "highlight_job": "Junior R&D Engineer",
-    "highlight_job_sub": "Eristack · Penta"
+    "highlight_job_sub": "Eristack · Penta",
+    "focus_label": "Focus attuale",
+    "focus_text": "Ricerca su architetture bio-ispirate (Spiking Neural Networks), Large Language Models e AI applicata a contesti industriali."
   },
   "experience": {
     "title": "Esperienza",
@@ -113,6 +115,7 @@
   "contact": {
     "title": "Contatti",
     "subtitle": "Parliamo",
+    "status_available": "Disponibile per collaborazioni di ricerca AI & R&D",
     "description": "Hai un progetto interessante, una collaborazione o vuoi semplicemente fare due chiacchiere sull'AI? Scrivimi!",
     "name_label": "Nome",
     "name_placeholder": "Il tuo nome",

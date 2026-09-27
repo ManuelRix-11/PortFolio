@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Download, Hexagon } from 'lucide-react';
+import { Download } from 'lucide-react';
 import './Navbar.css';
 
 export default function Navbar() {

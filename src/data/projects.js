@@ -9,5 +9,14 @@ export const projects = [
     github: '#',
     demo: null,
     color: '#4F6EF7',
+    featured: true,
+    badge: 'Research Project',
+    architecture: 'Dual-Branch Siamese Network',
+    metrics: [
+      { label: 'Paradigm', value: 'Few-Shot Learning' },
+      { label: 'Loss Objective', value: 'Contrastive / Metric' },
+      { label: 'Domain', value: 'Computational Oncology' },
+      { label: 'Framework', value: 'TensorFlow · Keras' },
+    ],
   }
 ];
