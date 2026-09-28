@@ -54,6 +54,19 @@
           "NLP",
           "R&D"
         ]
+      },
+      {
+        "role": "Stagista",
+        "company": "DatagrafServizi",
+        "location": "Avellino, AV",
+        "period": "Dicembre 2024 — Dicembre 2025",
+        "description": "Attività di analisi ed elaborazione dati, sviluppo di script per l'automazione dei flussi informativi e supporto alla realizzazione di modelli analitici e reportistica.",
+        "tags": [
+          "Python",
+          "Pandas",
+          "SQL",
+          "Data Analysis"
+        ]
       }
     ]
   },

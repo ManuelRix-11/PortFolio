@@ -92,10 +92,14 @@ export default function Experience() {
                         <span className="timeline-dot-start" />
                         {/* Connecting Gradient Line */}
                         <span className="timeline-track-line" />
-                        {/* Bottom Dot: Active Now Point (Animated continuous pulse & glow) */}
-                        <span className="timeline-dot-now">
-                          <span className="timeline-pulse-ring" />
-                        </span>
+                        {/* Bottom Dot: Active Now Point or Past End Point */}
+                        {isCurrent ? (
+                          <span className="timeline-dot-now">
+                            <span className="timeline-pulse-ring" />
+                          </span>
+                        ) : (
+                          <span className="timeline-dot-end" />
+                        )}
                       </div>
 
                       <div className="timeline-nodes-col">

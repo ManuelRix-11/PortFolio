@@ -317,6 +317,17 @@
   justify-content: center;
 }
 
+/* Past Role End Dot */
+.timeline-dot-end {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94A3B8;
+  border: 1.5px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 0 6px rgba(148, 163, 184, 0.35);
+  flex-shrink: 0;
+}
+
 .timeline-pulse-ring {
   position: absolute;
   top: -5px;
