@@ -161,14 +161,15 @@
   align-items: center;
   gap: 7px;
   padding: 4px 12px;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.4);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: 100px;
-  color: var(--success);
+  color: #38BDF8;
   font-family: var(--font-mono);
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.03em;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12);
 }
 
 .spotlight-past-pill {
@@ -188,14 +189,14 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 8px var(--success);
-  animation: pulseGreen 2s infinite ease-in-out;
+  background: #38BDF8;
+  box-shadow: 0 0 8px #38BDF8;
+  animation: pulseCyan 2s infinite ease-in-out;
 }
 
-@keyframes pulseGreen {
+@keyframes pulseCyan {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 0.45; transform: scale(0.85); }
 }
 
 /* Top: Company & Location Bar */
@@ -272,13 +273,13 @@
   z-index: 1;
 }
 
-/* Spine Column: Static Top Dot -> Gradient Line -> Pulsing Bottom Dot */
+/* Spine Column: Most Recent Top Dot -> Gradient Line -> Static Start Bottom Dot */
 .timeline-spine-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 0 9px 0;
+  padding: 8px 0 6px 0;
   width: 14px;
   flex-shrink: 0;
 }
@@ -294,12 +295,12 @@
   flex-shrink: 0;
 }
 
-/* Thin Gradient Line connecting the two milestones */
+/* Thin Gradient Line connecting the two milestones (from top recent/now down to bottom start) */
 .timeline-track-line {
   width: 2px;
   flex-grow: 1;
   min-height: 24px;
-  background: linear-gradient(180deg, rgba(79, 110, 247, 0.3) 0%, rgba(99, 102, 241, 0.95) 100%);
+  background: linear-gradient(180deg, #38BDF8 0%, rgba(79, 110, 247, 0.35) 100%);
   margin: 4px 0;
 }
 
@@ -360,12 +361,18 @@
   }
 }
 
-/* Nodes Column: Start Date (top) and Status Badge (bottom) */
+/* Nodes Column: Most Recent Milestone (top) and Start Date (bottom) */
 .timeline-nodes-col {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 16px;
+}
+
+.timeline-node-recent {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
 }
 
 .timeline-node-start {
@@ -386,13 +393,6 @@
   font-weight: 600;
   color: #CBD5E1;
   letter-spacing: -0.01em;
-}
-
-.timeline-node-now {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 26px;
 }
 
 /* ── 2. Right Narrative & Stack Column (Elevated Indigo-Tinted Contrast) ── */

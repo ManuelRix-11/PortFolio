@@ -85,14 +85,10 @@ export default function Experience() {
                     {/* Dominant Role Title */}
                     <h3 className="spotlight-role-title">{item.role}</h3>
 
-                    {/* Internal Role Progression Timeline (Start Date -> Line -> Present Active Dot) */}
+                    {/* Internal Role Progression Timeline (Recent/Now on TOP -> Line -> Start/Oldest on BOTTOM) */}
                     <div className="role-timeline-track">
                       <div className="timeline-spine-col" aria-hidden="true">
-                        {/* Top Dot: Start Point (Static) */}
-                        <span className="timeline-dot-start" />
-                        {/* Connecting Gradient Line */}
-                        <span className="timeline-track-line" />
-                        {/* Bottom Dot: Active Now Point or Past End Point */}
+                        {/* Top Dot: Most Recent Milestone (Active Now pulse or Past End Point) */}
                         {isCurrent ? (
                           <span className="timeline-dot-now">
                             <span className="timeline-pulse-ring" />
@@ -100,17 +96,15 @@ export default function Experience() {
                         ) : (
                           <span className="timeline-dot-end" />
                         )}
+                        {/* Connecting Gradient Line */}
+                        <span className="timeline-track-line" />
+                        {/* Bottom Dot: Oldest / Start Milestone (Static) */}
+                        <span className="timeline-dot-start" />
                       </div>
 
                       <div className="timeline-nodes-col">
-                        {/* Top Milestone: Start Date */}
-                        <div className="timeline-node timeline-node-start">
-                          <Calendar size={13} className="timeline-icon-cal" />
-                          <span className="timeline-date-text">{startDate}</span>
-                        </div>
-
-                        {/* Bottom Milestone: Active Now Badge */}
-                        <div className="timeline-node timeline-node-now">
+                        {/* Top Milestone: Most Recent (In corso or End Date) */}
+                        <div className="timeline-node timeline-node-recent">
                           {isCurrent ? (
                             <div className="spotlight-live-pill">
                               <span className="live-pulse-dot" />
@@ -123,6 +117,12 @@ export default function Experience() {
                               </span>
                             </div>
                           )}
+                        </div>
+
+                        {/* Bottom Milestone: Oldest / Start Date */}
+                        <div className="timeline-node timeline-node-start">
+                          <Calendar size={13} className="timeline-icon-cal" />
+                          <span className="timeline-date-text">{startDate}</span>
                         </div>
                       </div>
                     </div>
