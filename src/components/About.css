@@ -1,177 +1,213 @@
 /* ============================================================
-   ABOUT SECTION — EDITORIAL NARRATIVE & CURRENT FOCUS
-   Pure narrative hierarchy without duplicate qualification cards
+   ABOUT SECTION — MOCKUP ALIGNED (AVATAR LEFT + CONTENT RIGHT)
+   ponytail: Pure CSS orbital ring animation, grid layout,
+   original palette strictly preserved.
    ============================================================ */
 
 .about-section {
   position: relative;
   background: var(--bg);
+  padding: 100px 0 60px;
 }
 
-.about-unified-container {
-  display: flex;
-  flex-direction: column;
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
-.about-header-meta {
-  margin-bottom: 32px;
+/* ── Section Header ── */
+.about-header {
+  margin-bottom: 40px;
 }
 
-.section-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.section-index {
+.about-kicker {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--primary);
-  background: rgba(79, 110, 247, 0.12);
-  border: 1px solid rgba(79, 110, 247, 0.25);
-  padding: 2px 7px;
-  border-radius: 4px;
-  letter-spacing: 0.05em;
-}
-
-.section-index-line {
-  width: 16px;
-  height: 1px;
-  background: rgba(79, 110, 247, 0.35);
-}
-
-.about-header-meta .section-label {
-  font-family: var(--font-head);
   font-size: 13px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
   color: var(--primary);
-  margin-bottom: 0;
+  margin-bottom: 12px;
 }
 
 .about-title {
-  margin-bottom: 0;
+  font-family: var(--font-head);
+  font-size: clamp(38px, 5.5vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  margin: 0;
 }
 
-/* ── Editorial Narrative Layout ── */
-.about-editorial-layout {
-  max-width: 960px;
+/* ── Grid Layout: Avatar Left, Content Right ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  align-items: center;
+  gap: 56px;
+}
+
+/* ── Left Column: Avatar & Orbital Rings ── */
+.about-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-avatar-container {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-orb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aboutOrbSpin 35s linear infinite;
+  pointer-events: none;
+}
+
+.about-orb-rev {
+  animation-direction: reverse;
+  animation-duration: 25s;
+}
+
+.about-avatar-inner {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: 0 0 35px var(--glow), 0 16px 40px rgba(0, 0, 0, 0.6);
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+}
+
+.about-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.about-avatar-container:hover .about-avatar-img {
+  transform: scale(1.06);
+}
+
+/* ── Right Column: Content ── */
+.about-content {
   display: flex;
   flex-direction: column;
 }
 
-/* 1. Primary Quote-Style Lead */
-.about-quote-lead {
-  position: relative;
-  padding: 26px 32px;
-  background: linear-gradient(135deg, rgba(21, 28, 52, 0.8) 0%, rgba(17, 22, 40, 0.5) 100%);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-left: 4px solid var(--primary);
-  border-radius: 0 16px 16px 0;
-  box-shadow: -4px 0 24px rgba(79, 110, 247, 0.2), 0 10px 32px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-}
-
-.about-lead-statement {
-  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
-  font-weight: 500;
-  line-height: 1.7;
-  color: #F8FAFC;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-/* 2. Secondary Paragraph (Indented for visual cadence) */
-.about-secondary-block {
-  margin-top: 24px;
-  padding-left: 36px;
-}
-
-.about-body-statement {
-  font-size: 16px;
-  line-height: 1.8;
+.about-bio-text {
+  font-size: clamp(17px, 1.4vw, 19.5px);
   color: var(--muted);
-  max-width: 860px;
-  margin: 0;
+  line-height: 1.75;
+  margin: 0 0 32px;
 }
 
-/* 3. Current Focus Distinctive Callout Bar */
-.about-current-focus-bar {
-  margin-top: 36px;
-  padding: 16px 24px;
-  background: #131829;
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  border-left: 3px solid rgba(52, 211, 153, 0.6);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
+/* ── Cards Grid ── */
+.about-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
 }
 
-.focus-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 4px 12px;
-  border-radius: 100px;
-  background: rgba(52, 211, 153, 0.1);
-  border: 1px solid rgba(52, 211, 153, 0.35);
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 16px 36px -12px var(--glow);
+}
+
+.about-card-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--success);
-  white-space: nowrap;
-  flex-shrink: 0;
+  color: var(--primary);
 }
 
-.focus-pulse-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 8px var(--success);
-  animation: focusPulse 2s infinite ease-in-out;
+.about-card-val {
+  font-family: var(--font-head);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 8px;
+  line-height: 1.3;
 }
 
-@keyframes focusPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+/* ── Keyframe Animations ── */
+@keyframes aboutOrbSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.focus-statement {
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: #CBD5E1;
-  margin: 0;
-}
-
-/* ── Responsive Adaptations ── */
-@media (max-width: 768px) {
-  .about-quote-lead {
-    padding: 20px 20px;
-    border-radius: 0 12px 12px 0;
+/* ── Responsive Adjustments ── */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .about-lead-statement {
-    font-size: 1.15rem;
+  .about-avatar-wrap {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-section {
+    padding: 70px 0 40px;
   }
 
-  .about-secondary-block {
-    padding-left: 20px;
+  .about-container {
+    padding: 0 20px;
   }
 
-  .about-current-focus-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 16px;
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-bio-text {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .about-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    padding: 18px 20px;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .about-orb {
+    animation: none !important;
   }
 }

@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { motion, useReducedMotion } from 'framer-motion';
+import profileImg from '../assets/profile.jpg';
 import './About.css';
 
+// ponytail: hybrid about layout (photo with orbital SVG ring left + bio text and 3 key cards right)
 export default function About() {
   const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
@@ -18,7 +20,7 @@ export default function About() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -31,49 +33,74 @@ export default function About() {
 
   return (
     <section className="section about-section" id="about">
-      <div className="container">
+      <div className="container about-container">
+        {/* Section Header */}
+        <div className="about-header">
+          <span className="about-kicker">{t('about.kicker', '01 — Un po’ su di me')}</span>
+          <h2 className="about-title">{t('about.title', 'Chi sono')}</h2>
+        </div>
+
+        {/* Content Row: Photo on the left, Bio + Cards on the right */}
         <motion.div
-          className="about-unified-container"
+          className="about-grid"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {/* Section Header */}
-          <motion.div variants={itemVariants} className="about-header-meta">
-            <div className="section-kicker">
-              <span className="section-index">01</span>
-              <span className="section-index-line" />
-              <p className="section-label">{t('about.subtitle')}</p>
+          {/* Left Column: Circular Photo Frame with Animated Orbital Rings */}
+          <motion.div variants={itemVariants} className="about-avatar-wrap">
+            <div className="about-avatar-container">
+              <svg className="about-orb" viewBox="0 0 240 240" aria-hidden="true">
+                <circle
+                  cx="120"
+                  cy="120"
+                  r="116"
+                  fill="none"
+                  stroke="var(--primary)"
+                  strokeWidth="2"
+                  strokeDasharray="50 22"
+                />
+                <circle
+                  className="about-orb-rev"
+                  cx="120"
+                  cy="120"
+                  r="116"
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeWidth="2"
+                  strokeDasharray="14 36"
+                />
+              </svg>
+              <div className="about-avatar-inner">
+                <img
+                  src={profileImg}
+                  alt="Emanuele Ragozzini"
+                  className="about-avatar-img"
+                />
+              </div>
             </div>
-            <h2 className="section-title about-title">{t('about.title')}</h2>
           </motion.div>
 
-          {/* Narrative Editorial Flow (No duplicate cards) */}
-          <div className="about-editorial-layout">
-            {/* Primary Quote-Style Lead Statement */}
-            <motion.div variants={itemVariants} className="about-quote-lead">
-              <p className="about-lead-statement">
-                {t('about.bio')}
-              </p>
-            </motion.div>
+          {/* Right Column: Narrative Description + 3 Summary Cards */}
+          <div className="about-content">
+            <motion.p variants={itemVariants} className="about-bio-text">
+              {t('about.bio')}
+            </motion.p>
 
-            {/* Secondary Narrative Block */}
-            <motion.div variants={itemVariants} className="about-secondary-block">
-              <p className="about-body-statement">
-                {t('about.bio2')}
-              </p>
-            </motion.div>
-
-            {/* Current Focus Distinctive Line (Non-duplicate contextual pulse) */}
-            <motion.div variants={itemVariants} className="about-current-focus-bar">
-              <div className="focus-pill">
-                <span className="focus-pulse-dot" />
-                <span className="focus-label">{t('about.focus_label')}</span>
+            <motion.div variants={itemVariants} className="about-cards-grid">
+              <div className="about-card">
+                <span className="about-card-label">{t('about.card_role_label', 'Ruolo')}</span>
+                <span className="about-card-val">{t('about.card_role_val', 'Junior R&D Engineer · Eristack')}</span>
               </div>
-              <p className="focus-statement">
-                {t('about.focus_text')}
-              </p>
+              <div className="about-card">
+                <span className="about-card-label">{t('about.card_studies_label', 'Studi')}</span>
+                <span className="about-card-val">{t('about.card_studies_val', 'MSc Data Science & ML · UniSA')}</span>
+              </div>
+              <div className="about-card">
+                <span className="about-card-label">{t('about.card_focus_label', 'Focus')}</span>
+                <span className="about-card-val">{t('about.card_focus_val', 'AI & Machine Learning')}</span>
+              </div>
             </motion.div>
           </div>
         </motion.div>

@@ -11,6 +11,7 @@
     "download_cv": "Scarica CV"
   },
   "hero": {
+    "badge": "Junior R&D Engineer · Eristack",
     "greeting": "Ciao, sono",
     "name": "Emanuele Ragozzini",
     "roles": [
@@ -20,23 +21,23 @@
       "NLP & Computer Vision Enthusiast"
     ],
     "description": "Laureato in Informatica presso l'Università di Salerno, attualmente proseguo con la magistrale in Data Science & Machine Learning. Junior R&D Engineer in Eristack, dove trasformo la ricerca in prodotti concreti.",
+    "cta_projects": "Vedi i progetti",
     "cta_contact": "Contattami",
     "cta_cv": "Scarica CV",
     "scroll": "Scorri in basso"
   },
   "about": {
+    "kicker": "01 — Un po' su di me",
     "title": "Chi sono",
     "subtitle": "Un po' di me",
     "bio": "Sono Emanuele, un appassionato di Intelligenza Artificiale e Data Science con una solida base in informatica. Amo trasformare dati in insight e costruire sistemi intelligenti che risolvono problemi reali.",
     "bio2": "Attualmente frequento la magistrale in Data Science & Machine Learning all'Università degli Studi di Salerno, mentre lavoro come Junior R&D Engineer in Eristack, una società con sede a Penta focalizzata sull'innovazione tecnologica.",
-    "highlight_degree": "Laurea Triennale",
-    "highlight_degree_sub": "Informatica — UniSA",
-    "highlight_master": "Magistrale in corso",
-    "highlight_master_sub": "Data Science & ML — UniSA",
-    "highlight_job": "Junior R&D Engineer",
-    "highlight_job_sub": "Eristack · Penta",
-    "focus_label": "Focus attuale",
-    "focus_text": "Ricerca su architetture bio-ispirate (Spiking Neural Networks), Large Language Models e AI applicata a contesti industriali."
+    "card_role_label": "Ruolo",
+    "card_role_val": "Junior R&D Engineer · Eristack",
+    "card_studies_label": "Studi",
+    "card_studies_val": "MSc Data Science & ML · UniSA",
+    "card_focus_label": "Focus",
+    "card_focus_val": "AI & Machine Learning"
   },
   "experience": {
     "title": "Esperienza",
@@ -91,16 +92,20 @@
     ]
   },
   "skills": {
+    "kicker": "04 — Tecnologie e strumenti che utilizzo",
     "title": "Competenze",
     "subtitle": "Tecnologie e strumenti che utilizzo",
+    "skills_count": "SKILLS",
     "categories": {
       "languages": "Linguaggi",
-      "ml": "ML / AI Frameworks",
-      "tools": "Tools & DevOps",
-      "web": "Web & API"
+      "ai": "AI / ML",
+      "web": "Web & API",
+      "devops": "Tools & DevOps"
     }
   },
   "projects": {
+    "kicker": "03 — Progetti",
+    "selected_works": "Lavori selezionati",
     "title": "Progetti",
     "subtitle": "Cosa ho costruito",
     "view_details": "Dettagli",
@@ -109,8 +114,10 @@
     "close": "Chiudi"
   },
   "publications": {
-    "title": "Pubblicazioni",
+    "kicker": "04 — Ricerca",
+    "title": "Ricerca & Pubblicazioni",
     "subtitle": "Ricerca e contributi accademici",
+    "read_more": "Leggi dettagli ↗",
     "status_published": "Pubblicato",
     "status_review": "In revisione",
     "status_preprint": "Preprint",
@@ -128,18 +135,15 @@
   "contact": {
     "title": "Contatti",
     "subtitle": "Parliamo",
-    "status_available": "Disponibile per collaborazioni di ricerca AI & R&D",
-    "description": "Hai un progetto interessante, una collaborazione o vuoi semplicemente fare due chiacchiere sull'AI? Scrivimi!",
-    "name_label": "Nome",
-    "name_placeholder": "Il tuo nome",
-    "email_label": "Email",
-    "email_placeholder": "tua@email.com",
-    "message_label": "Messaggio",
-    "message_placeholder": "Ciao Emanuele, vorrei...",
-    "send": "Invia messaggio",
-    "sending": "Invio in corso...",
-    "success": "Messaggio inviato! Ti risponderò presto.",
-    "note": "In alternativa, puoi contattarmi direttamente su LinkedIn o via email."
+    "banner_title": "Costruiamo qualcosa di intelligente.",
+    "status_available": "Disponibile per collaborazioni AI & R&D",
+    "description": "Hai un progetto interessante, una proposta di ricerca o vuoi discutere di AI e Machine Learning? Parliamone.",
+    "email_btn": "Email",
+    "linkedin_btn": "LinkedIn",
+    "github_btn": "GitHub",
+    "scholar_btn": "ResearchGate",
+    "location": "Salerno / Caserta · Italia",
+    "timezone": "CET (UTC+1) · Risposta rapida"
   },
   "footer": {
     "made_with": "Fatto con",

@@ -1,183 +1,120 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TypeAnimation } from 'react-type-animation';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, Mail, Download, Sparkles } from 'lucide-react';
-import profileImg from '../assets/profile.jpg';
+import { Download } from 'lucide-react';
 import './Hero.css';
 
+// ponytail: pure CSS GPU spotlight & fluid radar pulse; static role tags to avoid animation overload
 export default function Hero() {
   const { t } = useTranslation();
-  const roles = t('hero.roles', { returnObjects: true });
-  const sequence = roles.flatMap((r) => [r, 2200]);
   const shouldReduceMotion = useReducedMotion();
-
-  // References for 60fps RAF lerp interactions (Cursor glow + Photo parallax)
   const heroRef = useRef(null);
-  const glowRef = useRef(null);
-  const photoRef = useRef(null);
-  const isHovered = useRef(false);
-
-  // Targets and interpolated values for smooth physical inertia
-  const mouseTarget = useRef({ x: 0, y: 0 });
-  const mouseCurrent = useRef({ x: 0, y: 0 });
-  const photoOffset = useRef({ x: 0, y: 0, r: 0 });
-  const photoTarget = useRef({ x: 0, y: 0, r: 0 });
-
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-
-    // Detect touch / coarse pointer devices
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch) return;
-
-    let animationFrameId;
-
-    const animate = () => {
-      // 1. Lerp cursor glow position with soft physical inertia
-      mouseCurrent.current.x += (mouseTarget.current.x - mouseCurrent.current.x) * 0.085;
-      mouseCurrent.current.y += (mouseTarget.current.y - mouseCurrent.current.y) * 0.085;
-
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate3d(${mouseCurrent.current.x - 300}px, ${mouseCurrent.current.y - 300}px, 0)`;
-        glowRef.current.style.opacity = isHovered.current ? '1' : '0';
-      }
-
-      // 2. Lerp photo subtle counter-parallax
-      photoOffset.current.x += (photoTarget.current.x - photoOffset.current.x) * 0.06;
-      photoOffset.current.y += (photoTarget.current.y - photoOffset.current.y) * 0.06;
-      photoOffset.current.r += (photoTarget.current.r - photoOffset.current.r) * 0.06;
-
-      if (photoRef.current) {
-        photoRef.current.style.transform = `translate3d(${photoOffset.current.x}px, ${photoOffset.current.y}px, 0) rotate(${photoOffset.current.r}deg)`;
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [shouldReduceMotion]);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!heroRef.current || shouldReduceMotion) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    isHovered.current = true;
-    mouseTarget.current = { x, y };
-
-    // Normalized coordinates from center (-1 to 1) for photo parallax
-    const normX = (x - rect.width / 2) / (rect.width / 2);
-    const normY = (y - rect.height / 2) / (rect.height / 2);
-
-    // Subtle counter-movement in opposite direction (max 14px offset, 1.5deg tilt)
-    photoTarget.current = {
-      x: -normX * 14,
-      y: -normY * 12,
-      r: -normX * 1.5,
-    };
-  }, [shouldReduceMotion]);
-
-  const handleMouseEnter = useCallback(() => {
-    isHovered.current = true;
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    isHovered.current = false;
-    // Smoothly return photo to rest position
-    photoTarget.current = { x: 0, y: 0, r: 0 };
-  }, []);
+  const rectRef = useRef(null);
+  const rafRef = useRef(null);
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  // Stagger animation container
+  const handleMouseEnter = () => {
+    if (heroRef.current) {
+      rectRef.current = heroRef.current.getBoundingClientRect();
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (shouldReduceMotion || !heroRef.current) return;
+    if (!rectRef.current) {
+      rectRef.current = heroRef.current.getBoundingClientRect();
+    }
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      if (!heroRef.current || !rectRef.current) return;
+      const x = clientX - rectRef.current.left;
+      const y = clientY - rectRef.current.top;
+      heroRef.current.style.setProperty('--spotlight-x', `${x}px`);
+      heroRef.current.style.setProperty('--spotlight-y', `${y}px`);
+    });
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.12,
-        delayChildren: shouldReduceMotion ? 0 : 0.1,
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+        delayChildren: shouldReduceMotion ? 0 : 0.05,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 26 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 18 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.7,
+        duration: shouldReduceMotion ? 0 : 0.55,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   };
+
+  const tickerItems = [
+    'Data Science',
+    'Machine Learning',
+    'Artificial Intelligence',
+    'R&D',
+    'Research',
+    'Computer Vision',
+    'NLP',
+  ];
 
   return (
     <section
       ref={heroRef}
       className="hero"
       id="hero"
-      onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
     >
-      {/* 1. Signature Cursor Follow Glow (Lerped in RAF with inertia) */}
-      <div ref={glowRef} className="hero-cursor-glow" aria-hidden="true" />
+      {/* 1. Interactive Cursor Spotlight Glow */}
+      <div className="hero-cursor-spotlight" aria-hidden="true" />
 
-      {/* 2. Tactile Grain / Noise Texture Overlay */}
-      <div className="hero-noise-overlay" aria-hidden="true" />
-
-      {/* 3. Slow Ambient Gradient Mesh Background (18s Loop) */}
+      {/* 2. Background ambient mesh */}
       <div className="hero-mesh" aria-hidden="true">
         <div className="mesh-orb mesh-1" />
         <div className="mesh-orb mesh-2" />
-        <div className="mesh-orb mesh-3" />
       </div>
 
-      {/* 4. Subtle Structural Grid */}
+      {/* 3. Geometric grid */}
       <div className="hero-grid" aria-hidden="true" />
 
       <div className="container hero-inner">
-        {/* Left Column: Asymmetrical Typography Stack (Offset slightly higher) */}
+        {/* Left Column: Typography Stack */}
         <motion.div
           className="hero-text"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Human Greeting Pill */}
-          <motion.div variants={itemVariants} className="hero-greeting-wrap">
-            <span className="hero-greeting-pill">
-              {t('hero.greeting')}
-            </span>
+          {/* Status Badge with Ultra-Fluid Radar Pulse Dot */}
+          <motion.div variants={itemVariants} className="hero-badge">
+            <span className="hero-badge-dot" aria-hidden="true" />
+            <span>{t('hero.badge', 'Junior R&D Engineer · Eristack')}</span>
           </motion.div>
 
-          {/* Drastic Scale Display Title (Unclipped descenders) */}
+          {/* Display Name */}
           <motion.h1 variants={itemVariants} className="hero-name">
             <span className="name-first">Emanuele</span>
             <span className="name-last">Ragozzini</span>
           </motion.h1>
 
-          {/* Terminal / AI Role Ticker (Explicitly sized, no truncation) */}
+          {/* Clean Static Focus Chip (Zero Flicker / Visual Clutter) */}
           <motion.div variants={itemVariants} className="hero-role-badge">
             <span className="role-prompt-symbol">&gt;</span>
-            <span className="hero-role-text">
-              <TypeAnimation
-                sequence={sequence}
-                wrapper="span"
-                speed={50}
-                deletionSpeed={60}
-                repeat={Infinity}
-                cursor={true}
-              />
-            </span>
+            <span className="hero-role-text">Data Science &amp; Machine Learning</span>
           </motion.div>
 
           {/* Narrative Lead Description */}
@@ -185,67 +122,113 @@ export default function Hero() {
             {t('hero.description')}
           </motion.p>
 
-          {/* Magnetic CTA Group */}
+          {/* Action CTAs */}
           <motion.div variants={itemVariants} className="hero-cta">
-            <button
+            <a
+              href="#projects"
               className="btn btn-primary hero-btn-main"
-              onClick={() => scrollTo('contact')}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('projects');
+              }}
             >
-              <Mail size={16} />
-              <span>{t('hero.cta_contact')}</span>
-              <Sparkles size={14} className="btn-sparkle" />
-            </button>
+              <span>{t('hero.cta_projects', 'Vedi i progetti')}</span>
+            </a>
+            <a
+              href="#contact"
+              className="btn btn-outline hero-btn-contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('contact');
+              }}
+            >
+              <span>{t('hero.cta_contact', 'Contattami')}</span>
+            </a>
             <a
               href="/cv.pdf"
               download
               className="btn btn-outline hero-btn-cv"
             >
-              <Download size={16} />
-              <span>{t('hero.cta_cv')}</span>
+              <Download size={15} />
+              <span>{t('hero.cta_cv', 'Scarica CV')}</span>
             </a>
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Asymmetrical Bleed Photo Stage with Parallax & Revolving Border */}
-        <motion.div
-          className="hero-stage-wrap"
-          initial={{ opacity: 0, scale: 0.92, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : 0.9,
-            delay: shouldReduceMotion ? 0 : 0.25,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        >
-          <div ref={photoRef} className="hero-card-frame">
-            {/* Ambient Backlight Aura */}
-            <div className="hero-card-glow" />
+        {/* Right Column: Subtle Ambient Neural Architecture Visual */}
+        <div className="hero-visual" aria-hidden="true">
+          <div className="hero-bob">
+            <svg
+              viewBox="0 0 460 340"
+              role="img"
+              aria-label="Neural Network Motif"
+              className="hero-network-svg"
+            >
+              {/* Subtle Synaptic Mesh (Low contrast, background texture) */}
+              <g stroke="var(--primary)" strokeWidth="1" fill="none" opacity="0.18">
+                {/* Layer 1 -> Layer 2 (3 x 4) */}
+                {[60, 170, 280].flatMap((y1) =>
+                  [50, 130, 210, 290].map((y2) => (
+                    <line key={`s1-${y1}-${y2}`} x1="50" y1={y1} x2="180" y2={y2} />
+                  ))
+                )}
 
-            {/* Revolving Gradient Border Envelope */}
-            <div className="hero-card-border">
-              <div className="hero-image-container">
-                <img
-                  src={profileImg}
-                  alt="Emanuele Ragozzini"
-                  className="hero-image"
-                />
-                <div className="hero-image-vignette" />
-              </div>
-            </div>
+                {/* Layer 2 -> Layer 3 (4 x 4) */}
+                {[50, 130, 210, 290].flatMap((y1) =>
+                  [60, 135, 205, 280].map((y2) => (
+                    <line key={`s2-${y1}-${y2}`} x1="180" y1={y1} x2="310" y2={y2} />
+                  ))
+                )}
+
+                {/* Layer 3 -> Layer 4 (4 x 2) */}
+                {[60, 135, 205, 280].flatMap((y1) =>
+                  [110, 230].map((y2) => (
+                    <line key={`s3-${y1}-${y2}`} x1="310" y1={y1} x2="420" y2={y2} />
+                  ))
+                )}
+              </g>
+
+              {/* Just 2 Soft Flowing Forward Signals */}
+              <g stroke="var(--primary)" strokeWidth="1.6" fill="none" opacity="0.6">
+                <path className="hero-fwd-signal" d="M50 170 L180 130 L310 205 L420 110" />
+                <path className="hero-fwd-signal sig-d2" d="M50 280 L180 210 L310 135 L420 230" stroke="var(--accent)" />
+              </g>
+
+              {/* Minimal Clean Neurons */}
+              {/* Layer 1 */}
+              {[60, 170, 280].map((y, i) => (
+                <circle key={`n1-${i}`} className="hero-nd" cx="50" cy={y} r="5" fill="#070B14" stroke="var(--primary)" strokeWidth="1.5" />
+              ))}
+
+              {/* Layer 2 */}
+              {[50, 130, 210, 290].map((y, i) => (
+                <circle key={`n2-${i}`} className={`hero-nd hero-nd-d${i + 1}`} cx="180" cy={y} r="5.5" fill="#070B14" stroke="var(--primary)" strokeWidth="1.5" />
+              ))}
+
+              {/* Layer 3 */}
+              {[60, 135, 205, 280].map((y, i) => (
+                <circle key={`n3-${i}`} className={`hero-nd hero-nd-d${i + 2}`} cx="310" cy={y} r="5.5" fill="#070B14" stroke="var(--accent)" strokeWidth="1.5" />
+              ))}
+
+              {/* Layer 4 */}
+              <circle className="hero-nd hero-nd-d3" cx="420" cy="110" r="6" fill="var(--primary)" opacity="0.9" />
+              <circle className="hero-nd hero-nd-d5" cx="420" cy="230" r="6" fill="var(--accent)" opacity="0.8" />
+            </svg>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Floating Scroll Indicator */}
-      <button
-        className="hero-scroll"
-        onClick={() => scrollTo('about')}
-        aria-label={t('hero.scroll')}
-      >
-        <span className="scroll-track">
-          <ArrowDown size={17} />
-        </span>
-      </button>
+      {/* Infinite Word Carousel / Marquee Ticker */}
+      <div className="hero-ticker" aria-hidden="true">
+        <div className="hero-ticker-track">
+          {tickerItems.concat(tickerItems).map((item, idx) => (
+            <span key={idx} className="hero-ticker-item">
+              <span>{item}</span>
+              <span className="ticker-sep">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

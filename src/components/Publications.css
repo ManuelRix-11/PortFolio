@@ -1,50 +1,166 @@
 /* ============================================================
-   PUBLICATIONS — High-Impact Editorial Research Paper Cards
-   Dominant title, side-by-side metadata, unboxed narrative abstract,
-   clean non-bracket labels, subtle research watermark, and bold DOI CTA
+   RESEARCH & PUBLICATIONS — MINIMAL MOCKUP VIEW & FULL MODAL
+   ponytail: Minimal border-left grid on page, full research card in modal
    ============================================================ */
 
-.pub-header-block {
-  margin-bottom: 40px;
+.research-section {
+  position: relative;
+  background: var(--bg);
+  padding: 80px 0;
 }
 
-.pub-meta-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 100px;
-  background: rgba(79, 110, 247, 0.08);
-  border: 1px solid rgba(79, 110, 247, 0.22);
-  color: var(--accent);
+.research-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Section Header ── */
+.research-header {
+  margin-bottom: 36px;
+}
+
+.research-kicker {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
   margin-bottom: 12px;
 }
 
-.meta-chip-icon {
-  color: var(--primary);
+.research-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(38px, 5.5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0;
 }
 
-.pub-editorial-list {
+/* ── Minimal Grid matching Mockup ── */
+.research-minimal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.research-minimal-item {
+  border-left: 3px solid var(--primary);
+  padding: 12px 0 12px 28px;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.25s,
+              background-color 0.25s;
+  border-radius: 0 12px 12px 0;
+  outline: none;
+}
+
+.research-minimal-item:hover,
+.research-minimal-item:focus-visible {
+  border-left-color: var(--accent);
+  background: rgba(79, 110, 247, 0.05);
+  transform: translateX(6px);
+}
+
+.research-item-title {
+  font-family: var(--font-head);
+  font-size: clamp(20px, 1.8vw, 25px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin: 0 0 10px;
+  transition: color 0.2s;
+}
+
+.research-minimal-item:hover .research-item-title {
+  color: #FFFFFF;
+}
+
+.research-item-meta {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ── Editorial Research Card ── */
+.meta-sep {
+  color: rgba(79, 110, 247, 0.4);
+}
+
+.meta-click-hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--primary);
+  margin-left: auto;
+  letter-spacing: 0.02em;
+}
+
+/* ── Modal Overlay & Container ── */
+.pub-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 11, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modalFadeIn 0.25s ease;
+}
+
+.pub-modal-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pub-modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.pub-modal-close-btn:hover {
+  background: rgba(79, 110, 247, 0.2);
+  border-color: var(--primary);
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+/* ── Editorial Card inside Modal ── */
 .pub-editorial-card {
   position: relative;
   background: linear-gradient(160deg, #12182d 0%, #0d1222 100%);
   border: 1px solid rgba(99, 102, 241, 0.25);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(79, 110, 247, 0.08);
-  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.2, 0, 0.2, 1),
-              border-color 0.3s ease;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 50px var(--glow);
+  padding: 36px;
 }
 
 .pub-card-glow {
@@ -56,7 +172,6 @@
   background: linear-gradient(90deg, transparent 0%, rgba(79, 110, 247, 0.8) 50%, transparent 100%);
   pointer-events: none;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 .pub-card-border {
@@ -70,363 +185,229 @@
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0.65;
-  transition: opacity 0.3s ease;
 }
 
-.pub-editorial-card:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
-              0 0 35px rgba(79, 110, 247, 0.2);
-}
-
-.pub-editorial-card:hover .pub-card-glow {
-  opacity: 1;
-}
-
-.pub-editorial-card:hover .pub-card-border {
-  opacity: 1;
-}
-
-/* ── Corner Research Neural Watermark ── */
 .pub-card-watermark {
   position: absolute;
   top: -20px;
   right: -20px;
   color: var(--primary);
-  opacity: 0.07;
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
   filter: blur(0.5px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.pub-editorial-card:hover .pub-card-watermark {
-  opacity: 0.13;
-  transform: scale(1.05) rotate(3deg);
 }
 
 .pub-editorial-body {
   position: relative;
   z-index: 1;
-  padding: 38px 42px;
-  display: flex;
-  flex-direction: column;
 }
 
-/* ── Top Editorial Bar ── */
 .pub-top-bar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 20px;
 }
 
 .pub-index-tag {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--accent);
 }
 
-.index-bracket {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.pub-type-label {
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  padding-left: 8px;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-/* ── Status Indicator Pill with Green Pulse Dot ── */
 .pub-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
+  gap: 7px;
+  padding: 4px 12px;
   border-radius: 100px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.35);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.pub-status-pill.status-published {
-  background: rgba(52, 211, 153, 0.1);
   color: var(--success);
-  border: 1px solid rgba(52, 211, 153, 0.35);
-  box-shadow: 0 0 14px rgba(52, 211, 153, 0.15);
 }
 
 .pub-pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--success);
-  box-shadow: 0 0 8px var(--success);
-  animation: pubPulseDot 2s infinite ease-in-out;
+  box-shadow: 0 0 6px var(--success);
 }
 
-@keyframes pubPulseDot {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.85;
-    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0);
-  }
-}
-
-.pub-status-pill.status-review {
-  background: rgba(251, 191, 36, 0.1);
-  color: var(--warning);
-  border: 1px solid rgba(251, 191, 36, 0.35);
-}
-
-.pub-status-pill.status-review .pub-pulse-dot {
-  background: var(--warning);
-  box-shadow: 0 0 8px var(--warning);
-}
-
-/* ── 1. Dominant Publication Title ── */
 .pub-editorial-title {
-  font-size: clamp(23px, 2.7vw, 30px);
   font-family: var(--font-head);
-  font-weight: 800;
-  color: #FFFFFF;
-  line-height: 1.28;
-  letter-spacing: -0.025em;
-  margin: 0 0 26px 0;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0 0 24px;
 }
 
-/* ── Field Labels (Clean, Uppercase, Non-Bracket) ── */
+.pub-meta-duo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
 .pub-field-label {
+  display: block;
   font-family: var(--font-mono);
   font-size: 10.5px;
   font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-/* ── 2. Unified Authors & Venue Duo Row (Side-by-Side on Desktop) ── */
-.pub-meta-duo-row {
-  display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 24px;
-  align-items: start;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  margin-bottom: 26px;
-}
-
-.pub-meta-col {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 6px;
 }
 
 .pub-authors-high-contrast {
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: #F8FAFC;
-}
-
-.author-colleague {
-  color: #E2E8F0;
-  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
 }
 
 .author-self-highlight {
-  color: #93C5FD;
+  color: #FFFFFF;
   font-weight: 700;
-  border-bottom: 1.5px solid rgba(147, 197, 253, 0.5);
-}
-
-.author-sep {
-  color: var(--subtle);
-}
-
-.pub-venue-details {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  border-bottom: 1.5px solid var(--primary);
 }
 
 .venue-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #CBD5E1;
-  line-height: 1.45;
+  display: block;
+  font-family: var(--font-head);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
 }
 
 .venue-year-badge {
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--primary);
-  background: rgba(79, 110, 247, 0.12);
-  border: 1px solid rgba(79, 110, 247, 0.3);
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(129, 140, 248, 0.12);
   padding: 2px 8px;
   border-radius: 4px;
-  white-space: nowrap;
 }
 
-/* ── 3. Pure Content Abstract (No heavy box, luminous left border only) ── */
 .pub-abstract-narrative {
-  border-left: 3px solid var(--primary);
-  padding-left: 20px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-bottom: 30px;
-}
-
-.abstract-label {
-  display: block;
-  margin-bottom: 8px;
+  margin-bottom: 28px;
+  padding-left: 18px;
+  border-left: 2px solid var(--primary);
 }
 
 .pub-abstract-text {
   font-size: 15px;
-  color: #E2E8F0;
-  line-height: 1.8;
-  font-weight: 400;
+  line-height: 1.75;
+  color: var(--muted);
   margin: 0;
 }
 
-/* ── 4. DOI Link & Thematic Tags Footer Row ── */
 .pub-footer-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  align-items: center;
   flex-wrap: wrap;
-  padding-top: 22px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
-/* High-Contrast Interactive DOI Button */
 .pub-doi-btn {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   padding: 9px 18px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, rgba(79, 110, 247, 0.22) 0%, rgba(99, 102, 241, 0.14) 100%);
-  border: 1px solid rgba(79, 110, 247, 0.45);
-  color: #FFFFFF;
+  border-radius: 8px;
+  background: rgba(79, 110, 247, 0.12);
+  border: 1px solid rgba(79, 110, 247, 0.3);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: 12.5px;
-  font-weight: 600;
+  transition: all 0.2s;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(79, 110, 247, 0.25);
-  transition: all 0.25s ease;
-}
-
-.doi-tag-prefix {
-  background: rgba(79, 110, 247, 0.3);
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 10.5px;
-  font-weight: 700;
-  color: #93C5FD;
-}
-
-.doi-tag-id {
-  color: #FFFFFF;
-  letter-spacing: 0.02em;
-}
-
-.doi-arrow-icon {
-  color: #93C5FD;
-  transition: transform 0.25s ease;
 }
 
 .pub-doi-btn:hover {
-  background: var(--primary);
+  background: rgba(79, 110, 247, 0.25);
   border-color: var(--primary);
-  box-shadow: 0 6px 28px rgba(79, 110, 247, 0.55);
+  color: #FFFFFF;
   transform: translateY(-2px);
-  color: #FFFFFF;
 }
 
-.pub-doi-btn:hover .doi-arrow-icon {
-  transform: translate(2px, -2px);
-  color: #FFFFFF;
+.doi-tag-prefix {
+  font-weight: 700;
+  color: var(--primary);
 }
 
-/* Passive Contextual Thematic Pills */
 .pub-editorial-pills {
   display: flex;
-  align-items: center;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
 }
 
 .editorial-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid var(--border);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 5px 12px;
-  border-radius: 100px;
 }
 
-/* ── Responsive Adaptations ── */
-@media (max-width: 860px) {
+/* ── Keyframe Animations ── */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .research-section {
+    padding: 60px 0;
+  }
+
+  .research-container {
+    padding: 0 20px;
+  }
+
+  .research-title {
+    font-size: 36px;
+  }
+
+  .research-minimal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .pub-meta-duo-row {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-}
 
-@media (max-width: 768px) {
-  .pub-editorial-body {
-    padding: 28px 22px;
-  }
-
-  .pub-footer-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pub-card-watermark {
-    opacity: 0.04;
-  }
-}
-
-@media (max-width: 480px) {
-  .pub-top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pub-type-label {
-    display: none;
-  }
-
-  .pub-doi-btn {
-    width: 100%;
-    justify-content: center;
-    word-break: break-all;
+  .pub-editorial-card {
+    padding: 24px 20px;
   }
 }

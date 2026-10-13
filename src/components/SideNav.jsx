@@ -10,7 +10,6 @@ const SECTIONS = [
   'skills',
   'projects',
   'publications',
-  'certifications',
   'contact',
 ];
 
