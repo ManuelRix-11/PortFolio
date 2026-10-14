@@ -77,7 +77,7 @@ export default function Contact() {
           </p>
 
           {/* Pill Action Buttons */}
-          <div className="contact-pills-row">s
+          <div className="contact-pills-row">
             <a
               href="https://www.linkedin.com/in/emanuele-ragozzini/"
               target="_blank"
