@@ -77,20 +77,12 @@ export default function Contact() {
           </p>
 
           {/* Pill Action Buttons */}
-          <div className="contact-pills-row">
-            <a
-              href="mailto:emanueleragozzini@gmail.com"
-              className="contact-pill contact-pill-primary"
-            >
-              <Mail size={16} />
-              <span>{t('contact.email_btn', 'Email')}</span>
-            </a>
-
+          <div className="contact-pills-row">s
             <a
               href="https://www.linkedin.com/in/emanuele-ragozzini/"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-pill contact-pill-outline"
+              className="contact-pill contact-pill-primary"
             >
               <LinkedinIcon size={16} />
               <span>{t('contact.linkedin_btn', 'LinkedIn')}</span>
